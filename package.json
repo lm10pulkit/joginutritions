@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node adminroutes.js",
+    "start": "node adminroutes.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines":{
-      "node":"8.9.1"
+  "engines": {
+    "node": "8.9.1"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +18,7 @@
     "cloudinary": "^1.9.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
