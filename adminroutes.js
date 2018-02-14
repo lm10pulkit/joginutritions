@@ -136,7 +136,6 @@ app.get('/adminlogin',function(req,res){
     res.render('loginadmin');
 });
 app.post('/adminlogin',passport.authenticate('admin',{failureRedirect:'/adminlogin'}),function(req,res){
-	
     res.redirect('/addproduct');
 });
 app.get('/addproduct',adminloggedin,function(req,res){
@@ -306,12 +305,11 @@ app.post('/forgetpassword',function(req,res){
             sendmail(data.email,'password change',message,function(err,data){
                 console.log(data);
             });
-            
-          	res.redirect('/forgetpassword');
           }
           else{
           
           }
+          res.redirect('/forgetpassword');
      });
 });
 //admin search
