@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Settings</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+.settings-box{
+    margin:auto;
+    width:60%;
+    height:150%;
+    border:black 1px solid;
+    padding:2%;
+}
+
+
+  </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-dark bg-dark justify-content-between">
+                <a class="navbar-brand" href="#">
+                        <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+                        JOGI NUTRITION
+                      </a>
+                <form class="form-inline">
+                        <a href='/settings'><button class="btn btn-outline-success my-2 my-sm-0" type="submit">SETTINGS</button></a>&nbsp
+                  <a href='/logout'><button class="btn btn-outline-success my-2 my-sm-0" type="submit">LOGOUT</button></a>
+                </form>
+              <h1 style="width:100%;text-align:center;margin-top:1%;">Settings</h1>
+              <div class= "settings-box" align="center">
+                  <form method='post' action='/changeemail'>
+                    <input type= "password" name="password" placeholder="Current Password"><br><br>
+                    
+                    <input type= "email" name="email" placeholder="Email Id"><br><br>
+                    
+                    <button type="submit" class="btn btn-success">Change email</button><br><br>
+                   </form> 
+                  </div>

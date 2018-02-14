@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JOGI NUTRITION</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="mainpg.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  
+.bg { 
+    /* The image used */
+    background-image: url("img12.jpg");
+    margin-top:0%;
+    
+    height: 700px; 
+
+    /* Center and scale the image nicely */
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jn{
+    
+    background-color:#000000;
+    text-align: center;
+    color:white;
+    font-size: 50px;
+    margin-top:5%;
+
+}
+
+.h1{
+    color:black;
+    text-align: center;
+    
+    font-family:'Times New Roman', Times, serif;
+    font-size:60px;
+    font-weight:bold;
+}
+.h2{
+    color:white;
+    padding-left:10%;
+    margin-top:7%;
+    
+    font-size: 15px;
+    
+}
+ .btn-secondary {
+    background-color:red;
+    margin-top:5%;
+    
+}
+.bg1{
+    /* margin-top:100%; */
+    height:30%;
+    background-color: black;
+}
+.content{
+    background-color: rgba(68, 67, 67, 0.966);
+    height:60%;
+    width:80%;
+    margin:10% 0% 0% 10%;
+    
+}
+.bg-primary{
+    background:linear-gradient(rgb(196, 13, 13),rgb(253, 3, 3));
+}
+.card{
+    /* margin:5% 0 5% 0%; */
+    
+
+}
+.media{
+    background-color: black;
+    color:white;
+    width:100%;
+    height:700px;
+}
+.mr-3{
+   margin:5% 0% 0% 5%;
+   height:80%; 
+   
+}
+.media-body{
+    text-align:left;
+    background-color:rgb(32, 32, 32);
+    height:80%;
+    margin:5% 5% 0% 0%;
+    padding:5%;
+}
+.media1{
+    background-color: rgb(32, 32, 32);
+    color:white;
+    width:100%;
+    height:700px;
+    padding:5% 5% 0% 5%;
+}
+.mr-4{
+    float:right;
+    height:80%;
+    }
+.media-body1{
+    text-align:left;
+    background-color:black;
+    height:80%;
+    padding:5%;
+    width:60%;
+}
+.end{
+    height:200px;
+    text-align:center;
+    padding:5%;
+    background-color:black;
+    color:white;
+    width:100%;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    
+    color: white;
+}
+
+/* Twitter */
+.fa-instagram {
+    
+    color: white;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 1%;
+    overflow: hidden;
+    background-color: #333;
+    height:60px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    
+    color: white;
+    text-align: center;
+    padding: 0px 16px;
+    text-decoration: none;
+    
+}
+
+li a:hover:not(.active) {
+    
+    color:white;
+}
+
+.active {
+    background-color: red;
+    
+}
+.right{
+float:right;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+     /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    padding:2%;
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    
+    position: relative;
+    background-color: #fefefe;
+    margin:auto;
+    padding: 3%;
+    border: 1px solid #888;
+    width: 30%;
+    height:100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+.close {
+    color: white;
+    
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+
+  
+  .box1 {
+    width: 270px;
+    height: 160px;
+    margin: 5px;
+    background: #aef;
+    display: inline-flex;
+    
+  }
+  form{
+      padding:30% 0 0 0%;
+      
+  }
+  input[type=text] {
+      margin-bottom:5%;
+      width:100%;
+      
+  }
+  input[type=password] {
+    margin-bottom:5%;
+    width:100%;
+    
+}
+input[type=email] {
+    margin-bottom:5%;
+    width:100%;
+    
+}
+  </style>
+  
+</head>
+<body>
+
+  <ul>
+    <li><a  href="#home">JOGI NUTRITION</a></li>
+    <div class="right">
+    <li><a href="shopnow.html">SHOP</a></li>
+    <li id="myBtn"><a href="#contact">LOGIN</a></li> 
+    <li><a href="#about">KART &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+    </div>
+  </ul>
+            <div class="bg">
+              
+                    
+                    
+                        <h1 class="h1"><br><br>JOGI NUTRITION</h1>
+                        
+                    <div align="center">
+                    <button type="button" class="btn btn-secondary btn-lg" style="color:white;"><a href="shopnow.html">SHOP NOW</a></button></div>
+                   </div> 
+                
+                <div align="center" style="background-color:rgb(224, 223, 223);"><bR><br>
+                <div class="card" style="width: 18rem;">
+                    
+                    <img class="card-img-top"  src="img5.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      
+                      <p class="card-text">IQ MEGA</p>
+                      <a href="#" class="btn btn-primary">Shop</a>
+                    </div>
+                  </div>
+                  </div>
+                  
+                  <div class="media">
+                        <img class="mr-3" src="img6.jpg" alt="Generic placeholder image">
+                        <div class="media-body">
+                          <h5 class="mt-0">About Us</h5><br>
+                          
+                          This and That<br><br>
+                          joginutritions is a trendsetting Online Health Food Store, offering our first-rate products and exceptional customer service to shoppers from the comfort of their own homes. We’re a business made up of innovators and forward-thinkers, with the drive and wherewithal to constantly update and improve the online shopping experience.
+                        </div>
+                      </div>
+                      <div class="media1">
+                        <img class="mr-4" src="img7.jpg" >
+                        <div class="media-body1">
+                            <h6 class="mt-1">GIVE US A SHOT </h6><br>
+                            Thanks for your interest in joginutritions. For more information about our Online Health Food Store or the products we offer, get in touch with us. We look forward to hearing from you.
+                            <br><br>
+                            <form>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        
+                                        <input type="text" class="form-control" id="inputEmail4" placeholder="name">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        
+                                        <input type="email" class="form-control" id="inputPassword4" placeholder="email">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputAddress">Message</label>
+                                      <input type="textarea" style="height:150px;" class="form-control" id="inputAddress" >
+                                    </div>
+                                    
+                                    <button type="submit" >Submit</button>
+                                    
+                                  </form>
+                                      
+                                      
+                                    </div>
+                                    
+                                    
+                        </div>
+                        <div class="end">
+                            amannrrawat15@gmail.com  <br>
+                           
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-instagram"></a> 
+                        </div>                         
+                        
+                      
+                        <div id="myModal" class="modal" >
+                            <span class="close">&times;</span>
+                              <!-- Modal content -->
+                              <div class="modal-content">
+                                  
+                                  <div class="in-up-button">
+                                      <button type="button" class="btn btn-light" onclick="loginFunction()">Login</button> | <button type="button" class="btn btn-light" onclick="signUpFunction()">SignUp</button>
+                                    </div>  
+                                    <div class="login-content" id="login">
+                                    <form action="" autocomplete="on">
+                                        <input type="number" required autocomplete="off" placeholder="valid mobile no" name="email/mobile-no."/>
+                                        <input type="password" required autocomplete="off" placeholder="password" name="password"/>
+                                    
+                                        <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+                                    </form>  
+                                    </div>
+                                    <div class="signup-content" id="Sup">
+                                        <form action="" autocomplete="on">
+                                        <input type="text" placeholder="name" name="name"/>
+                                        <input type="email" required autocomplete="off"placeholder="Email" name="email"/>
+                                        <input type="text" required autocomplete="off"placeholder="Mobile no." name="mobile"/>
+                                        <input type="password" required autocomplete="off" placeholder="password" name="password"/><br><br>
+                                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick = "otpFunction()">Sign Up</button>
+                                        </form>
+                                    </div>  
+                                    <div class="otp-page" id="otpPage">
+                                      <i class="fa fa-arrow-left"> </i><div class="otp-h1">OTP VERIFICATION</div>
+                                      <div class="otp-content" align="center">
+                                        We have sent you an OTP on your <br>mobile number #@!%******<br><br>
+                                        <form action="" class="otp-form">
+                                        <type = "text" placeholder="4 digit OTP"></type>
+                                        <br><br><a href="#">Resend OTP</a>
+                                        <button type="button" class="btn btn-primary btn-lg btn-block" >DONE</button>
+                                        </form> 
+                                      </div>
+                                    </div>
+                                   
+                                
+                                  
+                                
+                              
+                            
+                            </div>
+                            <!-- Logn/signup page -->
+                            <script>
+                              var y=document.getElementById("Sup").style.display="none";
+                              var z=document.getElementById("otpPage").style.display="none";
+
+function loginFunction() {
+    var x = document.getElementById("login");
+    var y=document.getElementById("Sup");
+    var z=document.getElementById("otpPage");
+    
+        x.style.display = "block";
+        
+        y.style.display = "none";
+        z.style.display = "none";
+    
+}
+function signUpFunction() {
+    var x = document.getElementById("login");
+    var y=document.getElementById("Sup");
+    var z=document.getElementById("otpPage");
+    
+        y.style.display = "block";
+  
+        x.style.display = "none";
+        z.style.display = "none";
+    
+}
+function otpFunction() {
+    var x = document.getElementById("login");
+    var y=document.getElementById("Sup");
+    var z=document.getElementById("otpPage");
+        y.style.display = "none";
+        z.style.display = "block";
+        x.style.display = "none";
+}
+</script>
+                            <script>
+                            // Get the modal
+                            var modal = document.getElementById('myModal');
+                            
+                            // Get the button that opens the modal
+                            var btn = document.getElementById("myBtn");
+                            
+                            // Get the <span> element that closes the modal
+                            var span = document.getElementsByClassName("close")[0];
+                            
+                            // When the user clicks the button, open the modal 
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+                            
+                            // When the user clicks on <span> (x), close the modal
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+                            
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+                            </script>
+
+     
+ 
+</body>
+</html>
+

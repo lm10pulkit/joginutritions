@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>message </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .vertical-menu {
+    width: 200px;
+    margin-top:3%;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    height:50px;
+    text-align:center;
+   
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+  </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-dark bg-dark justify-content-between">
+                <a class="navbar-brand" href="#">
+                        <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+                        JOGI NUTRITION
+                      </a>
+                        <form class="form-inline" method='get' action='/settings'>               
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SETTINGS</button>&nbsp
+                      </form>
+                      <form class="form-inline" method='get' action='/logout'>
+                  <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">LOGOUT</button>
+                </form>
+              </nav>
+              <h1 style="width:100%;text-align:center;margin-top:1%;">Message</h1>
+<div class="add-product" style="display:inline-flex;width:100%;height:500px;">
+              <div class="box-1" style="display:inline-flex;width:100%;">
+              <div class="vertical-menu">
+                    <a href="/addproduct" >Add Product</a>
+                    <a href="/myproduct" >My product</a>
+                    <a href="/mymessage" class='active'>Message</a>
+                  </div>
+
+
+                  <div class="box-1"style="width:60%;margin:3% 0 0 10%;">
+                    <%message.forEach(function(item){%>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"><%=item.name%></h5>
+                          <h5 class="card-subtitle mb-2 text-muted"><%=item.email%></h5>
+                          <p class="card-text"><%=item.message%></p>
+                          <a href="/deletemessage/<%=item._id%>" class="card-link">DELETE</a>
+                        </div>
+                      </div>
+                        <br>
+                      <%});%>  
+                    </div>
+
