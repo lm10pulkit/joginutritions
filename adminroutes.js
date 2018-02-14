@@ -29,6 +29,10 @@ app.use(session(
 //middleware for passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 //connect flash for flashing messages
 app.use(flash());
 //serializing user
@@ -134,10 +138,10 @@ app.post('/adminlogin',passport.authenticate('admin',{failureRedirect:'/adminlog
 	
     res.redirect('/addproduct');
 });
-app.get('/addproduct',function(req,res){
+app.get('/addproduct',adminloggedin,function(req,res){
   res.render('addproduct');
 });
-app.post('/addproduct',function(req,res){
+app.post('/addproduct',adminloggedin,function(req,res){
     var body = req.body;
     uploadphoto(body.imageurl,function(result){
         body.imageurl = result.secure_url;
@@ -149,12 +153,12 @@ app.post('/addproduct',function(req,res){
     });
     res.redirect('/addproduct');
 });
-app.get('/myproduct',function(req,res){
+app.get('/myproduct',adminloggedin,function(req,res){
      allproduct(function(err,data){
          res.render('myproduct',{data:data});
      }); 
 });
-app.post('/editproduct',function(req,res){
+app.post('/editproduct',adminloggedin,function(req,res){
 var id = req.query.id;
 var body = req.body;
 editproduct(id.toString(),body,function(err,data){
@@ -162,14 +166,14 @@ editproduct(id.toString(),body,function(err,data){
 });
 res.redirect('/addproduct');
 });
-app.get('/edit/:id', function(req,res){
+app.get('/edit/:id', adminloggedin,function(req,res){
     var id = req.params.id;
     id=id.toString();
     findproduct(id,function(err,data){
         res.render('editproduct',{data:data});
     });
 });
-app.get('/deleteproduct/:id',function(req,res){
+app.get('/deleteproduct/:id',adminloggedin,function(req,res){
      var id = req.params.id;
      deleteproduct(id.toString(),function(err,data){
             console.log(data);
@@ -177,19 +181,19 @@ app.get('/deleteproduct/:id',function(req,res){
      res.redirect('/myproduct');
 });
 //message app
-app.get('/mymessage', function(req,res){
+app.get('/mymessage',adminloggedin, function(req,res){
    allmessages(function(err,data){
         res.render('mymessage',{message:data});
    });   
 });
-app.get('/deletemessage/:id', function(req,res){
+app.get('/deletemessage/:id',adminloggedin, function(req,res){
 	 var id = req.params.id.toString();
      deletemessage(id,function(err,data){
             
      });
      res.redirect('/mymessage');
 });
-app.get('/settings', function(req,res){
+app.get('/settings',adminloggedin ,function(req,res){
    res.render('settings');
 });
 app.get('/changepassword',adminloggedin,function(req,res){
