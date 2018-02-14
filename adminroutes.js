@@ -337,7 +337,9 @@ app.get('/logout',adminloggedin, function(req,res){
       req.logout();
       res.redirect('/adminlogin');
 });
-
+app.use(function(req,res,next){
+  res.send('<h1>404  NO  PAGE  FOUND  </h1>');
+});
 // listeniing to the port 8080
 app.listen(port,function(err){
 if(err)
