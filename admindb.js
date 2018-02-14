@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var {hash,compare} = require('./hashing.js');
 var schema = require('mongoose').Schema;
-mongoose.connect('mongodb://localhost/jogibro');
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/jogibro');
 
 var {request,order,message,user,cart,product} = require('./instamojo.js');
 var adminschema =  new schema ({

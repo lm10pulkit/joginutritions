@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname+'/public'));
 app.use(cookieparser());
 var sendmail= require('./mail.js');
+ const port = process.env.PORT||8080;
 //middleware for session
 app.use(session(
 	{
@@ -340,7 +341,7 @@ app.get('/logout',adminloggedin, function(req,res){
 });
 
 // listeniing to the port 8080
-app.listen(8080,function(err){
+app.listen(port,function(err){
 if(err)
 	console.log(err);
 else
