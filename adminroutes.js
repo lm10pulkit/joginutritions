@@ -1,5 +1,6 @@
 var express = require('express');
 var app= express();
+var mongoose= require('mongoose');
 var bodyParser = require('body-parser');
 var cookieparser= require('cookie-parser');
 var session = require('express-session');
@@ -19,13 +20,15 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname+'/public'));
 app.use(cookieparser());
 var sendmail= require('./mail.js');
+var MongoStore = require('connect-mongo')(session);
  const port = process.env.PORT||8080;
 //middleware for session
 app.use(session(
 	{
 		secret:'secret',
 	    saveUninitialized:true,
-		resave:true
+		resave:true,
+		store : new MongoStore({mongooseConnection:mongoose.connection})
 	}));
 //middleware for passport
 app.use(passport.initialize());
