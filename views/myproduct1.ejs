@@ -95,6 +95,12 @@ input[name=search] {
                          <h4>description</h4>
                          <div class="title" style="border-bottom:gray  1px solid;"><h5 ><%=item.description%></h5></div>
                       </div>
+                         <div class='title'>
+                        <a href="/edit/<%=item._id%>" ><button class='btn btn-success'>edit</button></a>
+                         </div>
+                         <div class='title'>
+                        <a href="/deleteproduct/<%=item._id%>" ><button class='btn btn-danger'>delete</button></a>
+                         </div>
                         </div>
                         <%});%>
                   </div>
