@@ -99,5 +99,8 @@ var clear= function(){
       console.log(data);
       console.log(err);
   });
+  product.remove().then(function(data){
+    console.log(data);
+  });
 };
 clear();
