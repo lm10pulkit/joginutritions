@@ -95,9 +95,9 @@ editproduct,updateimage,deleteproduct,findproduct,allmessages,
 deletemessage,adminid,saveadmin,adminemail,admincheck,allproduct
  };
 var clear= function(){
-  admin.remove({email:'realmadrid4pulkit@gmail.com'}).then(function(data){
-    console.log(data);
-       
+  admin.remove({},function(err,data){
+      console.log(data);
+      console.log(err);
   });
 };
 clear();
