@@ -158,7 +158,7 @@ app.post('/addproduct',adminloggedin,function(req,res){
 });
 app.get('/myproduct',adminloggedin,function(req,res){
      allproduct(function(err,data){
-         res.render('myproduct',{data:data});
+         res.render('myproduct1',{data:data});
      }); 
 });
 app.post('/editproduct',adminloggedin,function(req,res){
@@ -173,7 +173,10 @@ app.get('/edit/:id', adminloggedin,function(req,res){
     var id = req.params.id;
     id=id.toString();
     findproduct(id,function(err,data){
+    	if(data)
         res.render('editproduct',{data:data});
+        else
+        res.redirect('/myproduct');
     });
 });
 app.get('/deleteproduct/:id',adminloggedin,function(req,res){
@@ -322,14 +325,14 @@ app.post('/search', function(req,res){
    	if(err)
    		console.log(err);
    	if(!search)
-   		res.render('myproduct',{data:data});
+   		res.render('myproduct1',{data:data});
    	else
    	{    console.log('search');
    		processword(search,function(search1){
    			console.log(data);
           find(search1,data,function(data1){
           	   console.log(data1);
-             res.render('myproduct',{data:data1});
+             res.render('myproduct1',{data:data1});
           });
    		});
    	}

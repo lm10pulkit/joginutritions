@@ -65,21 +65,38 @@ input[name=search] {
                         JOGI NUTRITION
                       </a>
                 <div class="form-inline">
-                        <a href='/settings'><button class="btn btn-outline-success my-2 my-sm-0" type="submit">SETTINGS</button></a>&nbsp
-                  <a href='/logout'><button class="btn btn-outline-success my-2 my-sm-0" type="submit">LOGOUT</button></a>
+                       <a href=settings.html> <button class="btn btn-outline-success my-2 my-sm-0" >SETTINGS</button></a>&nbsp
+                  <button class="btn btn-outline-success my-2 my-sm-0" >LOGOUT</button>
                 </div>
               </nav>
               <h1 style="width:100%;text-align:center;margin-top:1%;">MY PRODUCT</h1>
-              <form class="search-bar" method='post' action='/search'>
+              <form class="search-bar">
                     <br><br>
                     <input  type="text" name="search" placeholder="Search..">
                   </form>
-<div class="box-1" style="display:inline-flex;width:100%;">
-              <div class="vertical-menu">
-                    <a href="/addproduct" >Add Product</a>
-                    <a href="/myproduct" class='active'>My product</a>
-                    <a href="/mymessage">Message</a>
+<div class="box-1"style="display:inline-flex;width:100%;">
+              <div class="vertical-menu" >
+                    <a href="#" >Add Product</a>
+                    <a href="#">My orders</a>
+                    <a href="#"class="active">My product</a>
+                    <a href="#">Message</a>
+                    
                   </div>
+                  <div class="about-product"style="width:60%;">
+                  <div class="product-card" style="display:inline-flex;width:100%;margin:2%;padding:2%;border:black 1px solid;">
+                      <img class="img" src="img14.jpg" >
+                      <div class="about-product" style="width:100%;padding:2%;">
+                         <div class="title" style="border-bottom:gray  1px solid;"><h5 >Name</h5></div> 
+                         <div class="title" style="border-bottom:gray  1px solid;"><h5 >Category</h5></div>
+                         <div class="title" style="border-bottom:gray  1px solid;"><h5 >Price</h5></div>
+                         <div class="title" style="border-bottom:gray  1px solid;"><h5 >sdafaf,na asdfkjbew.f sdfbaer ads. fak.we fadsnf aen fasnd nads fjaewb fnasd fn,ew fasnd faew fmasd fawe rmnasd ffjhweb sa dfjawe afj,nads f,hwjebf</h5></div>
+                      </div>
+                  </div>
+                  
+                  
+                  
+                  </div>
+
                   
 
                   
@@ -87,38 +104,7 @@ input[name=search] {
 
 <!-- card of the image -->
                     
-                 <div class="container" style=" margin:2%; ">
-                     <!-- 1st row -->
-                     <%data.forEach(function(item){%>
-                      
-                                      <div class="row">  
-                      <div class="card" style="width: 18rem;">
-                            
-                      <img class="card-img-top" src="<%= item.imageurl %>" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text"><%=item.description%></p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><%= item.name%></li>
-                        <li class="list-group-item"> <strong>Rs</strong><%= item.price%></li>
-                        <li class="list-group-item"><%= item.category%></li>
-                      </ul>
-                      <div class="card-body">
-                        <a href="/edit/<%=item._id%>" class="card-link">EDIT</a>
-                        <a href="/deleteproduct/<%=item._id%>" class="card-link">DELETE PRODUCT</a>
-                      </div>
-                    </div>             
-                    <br>
-                <%});%>
-                 </div>
                 
-<!-- 2nd row -->
-
-                
-
-                    
-
-              
 
                       
                       
