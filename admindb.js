@@ -103,4 +103,4 @@ var clear= function(){
     console.log(data);
   });
 };
-clear();
+
