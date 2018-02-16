@@ -168,7 +168,7 @@ var body = req.body;
 editproduct(id.toString(),body,function(err,data){
    console.log(data);
 });
-res.redirect('/addproduct');
+res.redirect('/myproduct');
 });
 app.get('/edit/:id', adminloggedin,function(req,res){
     var id = req.params.id;
