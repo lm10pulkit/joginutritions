@@ -128,7 +128,7 @@ app.get('/adminsignup',onetime,function(req,res){
 app.post('/adminsignup',hashpassword,function(req,res){
     saveadmin(req.body, function(err,data){
     	if(data){
-             sendmail(data.email,'admin signup for jogi nutritions',' you have signuped for jogi nutritions as an admin',function(err,data){
+             sendmail(data.email,'JOGI NUTRITIONS SIGNUP','WELCOME TO JOGI NUTRITIONS , YOU ARE NOW AN ADMIN',function(err,data){
                  console.log(data);
              });
           res.redirect('adminlogin');
@@ -225,8 +225,8 @@ app.post('/changepassword',adminloggedin,function(req,res){
                 adminpassword(req.user.username,hash,function(err,data){
                   if(data)
                   {
-                  	var head ='change of password';
-                    var mssg = ' password has been changed';
+                  	var head ='PASSWORD CHANGE';
+                    var mssg = 'PASSWORD HAS BEEN CHANGED ';
                     var email = req.user.email;
                     sendmail(email,head,mssg,function(err,status){
                       console.log(status);
@@ -252,8 +252,8 @@ app.post('/changeusername', adminloggedin,function(req,res){
       if(check){
          adminusername(req.user.username,username,function(err,data){
              if(data){
-                  var head ='change of username';
-                  var mssg = ' username has been changed';
+                  var head ='USERNAME CHANGE';
+                  var mssg = ' YOUR USERNAME HAS BEEN CHANGE TO '+ username ;
                   var email = req.user.email;
                   sendmail(email,head,mssg,function(err,status){
                      console.log(status);
@@ -271,6 +271,7 @@ app.post('/changeusername', adminloggedin,function(req,res){
 app.post('/changeemail', adminloggedin,function(req,res){
    var password = req.body.password;
    var email = req.body.email;
+   var oldemail= req.user.email;
    compare(password, req.user.password,function(err,check){
       if(err)
       	throw err;
@@ -280,7 +281,10 @@ app.post('/changeemail', adminloggedin,function(req,res){
          adminemail(req.user.username,email,function(err,data){
              console.log(err);
              if(data){
-             	sendmail(email,'admin email changed for jogi nutritions','email change for admin',function(err,data){
+             	oldemail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN REMOVE FROM YOUR ACCOUNT',function(err,data){
+
+             	});
+             	sendmail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN ADDED TO YOUR ACCOUNT',function(err,data){
                  console.log(data);
              });
              console.log(data);
