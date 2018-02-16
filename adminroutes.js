@@ -281,7 +281,7 @@ app.post('/changeemail', adminloggedin,function(req,res){
          adminemail(req.user.username,email,function(err,data){
              console.log(err);
              if(data){
-             	oldemail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN REMOVE FROM YOUR ACCOUNT',function(err,data){
+             	sendemail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN REMOVE FROM YOUR ACCOUNT',function(err,data){
 
              	});
              	sendmail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN ADDED TO YOUR ACCOUNT',function(err,data){
