@@ -57,7 +57,7 @@
                   </div>
                    
                   <div class="add-product" style="width:60%;margin:3% 0 0 10%;">
-                    <form method='post' action='/addproduct'>
+                    <form method='post' action='/editproduct?id=<%=data._id%>'>
                                 <div class="form-group">
 
                                         <input class="form-control" type="text" name='name' value='<%=data.name%>' placeholder='name' required><br>

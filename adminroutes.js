@@ -158,6 +158,7 @@ app.post('/addproduct',adminloggedin,function(req,res){
 });
 app.get('/myproduct',adminloggedin,function(req,res){
      allproduct(function(err,data){
+     	if(data)
          res.render('myproduct1',{data:data});
      }); 
 });
@@ -321,6 +322,7 @@ app.post('/forgetpassword',function(req,res){
 //admin search
 app.post('/search', function(req,res){
    var search = req.body.search;
+    console.log('in the search route');
    allproduct(function(err,data){
    	if(err)
    		console.log(err);

@@ -70,7 +70,7 @@ input[name=search] {
                 </div>
               </nav>
               <h1 style="width:100%;text-align:center;margin-top:1%;">MY PRODUCT</h1>
-              <form class="search-bar" method='post' action=''>
+              <form class="search-bar" method='post' action='/search'>
                     <br><br>
                     <input  type="text" name="search" placeholder="Search..">
                   </form>
@@ -93,7 +93,7 @@ input[name=search] {
                           <h4>price</h4>
                          <div class="title" style="border-bottom:gray  1px solid;"><h5 ><%=item.price%></h5></div>
                          <h4>description</h4>
-                         <div class="title" style="border-bottom:gray  1px solid;"><h5 ><%=item.description%></h5></div>
+                         <div class="title" style="border-bottom:gray  1px solid; width: 100%;"><h5 ><%=item.description%></h5></div>
                       </div>
                          <div class='title'>
                         <a href="/edit/<%=item._id%>" ><button class='btn btn-success'>edit</button></a>
@@ -102,6 +102,7 @@ input[name=search] {
                         <a href="/deleteproduct/<%=item._id%>" ><button class='btn btn-danger'>delete</button></a>
                          </div>
                         </div>
+                        
                         <%});%>
                   </div>
 
