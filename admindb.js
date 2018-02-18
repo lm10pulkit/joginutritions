@@ -103,18 +103,5 @@ var clear= function(){
     console.log(data);
   });
 };
-var makeadmin = function(){
-   var new_admin= {};
-   var username='pulkit';
-   new_admin.username='pulkit';
-   new_admin.email='realmadrid10pulkit@gmail.com';
-   hash('pulkit',function(err,hash){
-      new_admin.password=hash;
-      var admin1= new admin(new_admin);
-    admin1.save().then(function(data){
-        console.log(data);
-      });
-   });
-};
-makeadmin();
+
 

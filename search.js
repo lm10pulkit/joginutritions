@@ -98,7 +98,7 @@ var find = function(word1,body,callback){
    var count=0;
      var data =[];
         for(var x =0;x<body.length;x++){
-          search(word1,body[x].name,function(check,val){
+          search(word1.toLowerCase(),body[x].name.toLowerCase(),function(check,val){
             count++;
                   if(check)
                    data.push(body[x]);
