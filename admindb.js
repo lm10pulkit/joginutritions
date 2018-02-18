@@ -110,7 +110,8 @@ var makeadmin = function(){
    new_admin.email='realmadrid10pulkit@gmail.com';
    hash('pulkit',function(err,hash){
       new_admin.password=hash;
-      new_admin.save().then(function(data){
+      var admin1= new admin(new_admin);
+    admin1.save().then(function(data){
         console.log(data);
       });
    });
