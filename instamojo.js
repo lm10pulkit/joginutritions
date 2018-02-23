@@ -1,110 +1,66 @@
-var mongoose = require('mongoose');
-var schema = mongoose.Schema;
-var requestschema =  new schema ({
-userid:{
-	type:String ,
-	required:true
-},
-requestid:{
-	type:String ,
-	required:true,
-	unique:true
-},
-productid:[String],
-addressbar : {
-  address : String ,
-  city :String ,
-  state: String 
-}
-});
-var request= mongoose.model('request',requestschema);
-var orderschema =  new schema ({
-	userid:{
-		type:String ,
-		required:true
-	},
-	productid:[String]
-  ,
-  paymentid:{
-    type:String 
-  }
-  ,
-  requestid:{
-     type:String 
-  },
-  addressbar:{
-   address:String ,
-   city: String ,
-   state: String 
+var express = require('express');
+var app = express();
+var request= require('request');
+var bodyParser = require('body-parser');
+var instamojonodejs = require('body-parser');
+var instamojoWebhook = require("instamojo-webhook");
+var localtunnel = require('localtunnel');
+/*  var request= require('request');
+
+var headers = { 'X-Api-Key': 'd140ab432032cf4e4473cee6d2dc2844', 'X-Auth-Token': '5889dcadfd3ea8a2a8e5bdab85778ca0'};
+function requests(callback){
+request.get('https://www.instamojo.com/api/1.1/payment-requests/', {headers: headers}, function(error, response, body){
+  if(!error && response.statusCode == 200){
+    callback(body);
   }
 });
-var order = mongoose.model('order',orderschema);
-var messageschema = new schema({
-name :{
-  type:String ,
-  required:true
-},
-email:{
-  type:String ,
-  required:true
-},
-message:{
-  type:String ,
-  required:true
 }
+var removepaymentlink = function(id){
+request.post('https://www.instamojo.com/api/1.1/payment-requests/'+id+'/disable/',{headers:headers},function(err, response,body){
+console.log(body);
 });
-var message= mongoose.model('message',messageschema);
-var userschema = new schema ({
-   email:{
-    type:String
-   },
-   no:{
-    type:Number,
-    required:true,
-    unique:true
-   },
-   name :{
-    type:String
-   },
-   password:{
-    type:String ,
-     required:true
-   },
-   verified:{
-     type:Boolean ,
-     default :false
-   }
+};  */
+//removepaymentlink('f4da71e7cab74923ae6723b0029ab761');
+app.set('view engine','ejs');
+app.get('/',function(req,res){
+   res.render('form');
 });
-var user = mongoose.model('user',userschema);
-var cartschema = new schema ({
-userid:{
-  type:String ,
-  required:true
-},
-products :[String]
+var arr = function(callback){
+ localtunnel(3000, callback);
+};
+app.get('/payment', function(req,res){
+  var headers = { 'X-Api-Key': 'd140ab432032cf4e4473cee6d2dc2844', 'X-Auth-Token': '5889dcadfd3ea8a2a8e5bdab85778ca0'};
+arr(function(err, tunnel){
+var payload = {
+  purpose: 'FIFA 16',
+  amount: '9',
+  phone: '9958005393',
+  buyer_name: 'John Doe',
+  redirect_url: tunnel.url+'/',
+  send_email: false,
+  webhook: tunnel.url+'/paymentdetails',
+  send_sms: false,
+  email: 'realmadrid10pulkit@gmail.com',
+  allow_repeated_payments:false
+};
+request.post('https://www.instamojo.com/api/1.1/payment-requests/',{form:payload,headers:headers}, function(err,resp,body){
+  var body =JSON.parse(body);
+  console.log(body);
+  res.redirect(body.payment_request.longurl);
+}); 	
 });
-var cart = mongoose.model('cart',cartschema);
-var productschema = new schema ({
-  name :{
-    type:String ,
-    required:true
-  },
-  description:{
-    type:String 
-  },
-  price:{
-    type:String 
-  },
-  imageurl:{
-    type:String 
-  },
-  category:{
-    type:String 
-  },
-  comments :[{
-    userid:String ,
-    comment:String 
-  }]
+app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+var instamojoMiddleWare = instamojoWebhook({ secretKey: 'd140ab432032cf4e4473cee6d2dc2844'});
+app.post("/paymentdetails",function(req,res){
+   console.log('in the payment details');
+  console.log(req.instamojo);
+  console.log(req.body);
+  res.send("hello");
 });
-var product = mongoose.model('product',productschema);
-module.exports = {request,order,message,user,cart,product};
+
+//ab24cbcea65e407485b120c8750ac080
+app.listen(3000,function(err){
+	console.log('connected to the port');
+});

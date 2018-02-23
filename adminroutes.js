@@ -7,10 +7,12 @@ var session = require('express-session');
 var passport = require('passport');
 var localstrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var request = require('request');
 var {hash,compare}= require('./hashing.js');
 var {adminmake, adminusername,adminpassword,addproduct,allproduct,editproduct,updatephoto,
 	deleteproduct,findproduct,allmessages,deletemessage,adminid,saveadmin,adminemail,admincheck,
-allproduct}= require('./admindb.js');
+allproduct,finduser,adduser,userbyid,updateuser,createcart,findcart,addtocart,removefromcart,findacart,
+findallproduct,addaddresstocart}= require('./admindb.js');
 var uploadphoto = require('./cloudinary.js');
 var {processword,find}= require('./search.js');
 app.set('view engine','ejs');
@@ -48,7 +50,9 @@ passport.serializeUser(function(user,done){
            done(null,obj);
 	}
 	else{
-      
+     console.log('in the serialize');
+      obj.admin=false;
+      done(null,obj);
 	}
 });
 var onetime = function(req,res,next){
@@ -59,6 +63,7 @@ var onetime = function(req,res,next){
      	 res.redirect('/adminlogin');
    });
 };
+// adminloggedin
 var adminloggedin=function(req,res,next){
     if(req.user){
        if(req.user.admin){
@@ -69,6 +74,20 @@ var adminloggedin=function(req,res,next){
     }
     else{
       res.redirect('/adminlogin');
+    }
+  
+};
+// userloggedin
+var userloggedin=function(req,res,next){
+    if(req.user){
+       if(!req.user.admin){
+            next();
+       }
+       else
+        res.redirect('/login');
+    }
+    else{
+      res.redirect('/login');
     }
   
 };
@@ -85,7 +104,11 @@ passport.deserializeUser(function(obj,done){
 
 	 }
 	 else{
-     
+    
+       var id = obj.id;
+        userbyid(id,function(err,data){
+             done(null,data);
+        });
 	 }
 });
 passport.use('admin',new localstrategy({
@@ -120,7 +143,10 @@ var hashpassword = function(req,res,next){
     });
 };
 app.get('/',function(req,res){
-  res.redirect('/adminsignup');
+  allproduct(function(err,data){
+ res.render('productview',{data:data});
+  });
+   
 });
 app.get('/adminsignup',onetime,function(req,res){
    res.render('adminsignup');
@@ -219,8 +245,6 @@ app.post('/changepassword',adminloggedin,function(req,res){
          if(err)
          	throw err;
          if(check){
-         	 console.log('passes this shit');
-
               hash(req.body.newpassword,function(err,hash){
                 adminpassword(req.user.username,hash,function(err,data){
                   if(data)
@@ -281,7 +305,7 @@ app.post('/changeemail', adminloggedin,function(req,res){
          adminemail(req.user.username,email,function(err,data){
              console.log(err);
              if(data){
-             	sendemail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN REMOVE FROM YOUR ACCOUNT',function(err,data){
+             	sendemail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN REMOVED FROM YOUR ACCOUNT',function(err,data){
 
              	});
              	sendmail(email,'EMAIL CHANGE','THIS EMAIL HAS BEEN ADDED TO YOUR ACCOUNT',function(err,data){
@@ -349,10 +373,154 @@ app.get('/logout',adminloggedin, function(req,res){
       req.logout();
       res.redirect('/adminlogin');
 });
-app.use(function(req,res,next){
-  res.send('<h1>404  NO  PAGE  FOUND  </h1>');
-});
+
+passport.use('usersignup',new localstrategy({
+usernameField :'no',
+passwordField : 'password',
+passReqToCallback:true
+},function(req,no,password,done){
+      finduser(no,function(err,data){
+           if(err)
+            return done(err,false);
+           if(data)
+            return done(err,false);
+            else{
+              hash(password,function(err,hash){
+                     adduser(no,hash,function(err,data){
+                          if(data)
+                          return done(err,data);
+                          else
+                            return done(err,null);
+                     });
+              });
+            }
+      });     
+}));
+passport.use('usersignin',new localstrategy({
+usernameField :'no',
+passwordField : 'password',
+passReqToCallback:true
+},function(req,no,password,done){
+      finduser(no,function(err,data){
+           if(err)
+            return done(err,false);
+           if(!data)
+            return done(err,false);
+          else
+             {
+              compare(password,data.password,function(err,check){
+                if(check)
+                  done(null,data);
+                else
+                  done(null,false);
+              });
+             }
+      });      
+}));
 // listeniing to the port 8080
+//user
+app.post('/signup',passport.authenticate('usersignup',{failureRedirect:'/signup'}),function(req,res){
+   var userid= req.user._id.toString();
+   createcart(userid,function(err,data){
+         if(err)
+          console.log('cart cant be created');
+        else
+          console.log(data);
+   });
+  res.redirect('/adddetails');   
+});
+app.post('/login',passport.authenticate('usersignin',{failureRedirect:'/login'}),function(req,res){
+  res.redirect('/');
+});
+
+app.get('/signup',function(req,res){
+    res.render('signup');
+});
+
+app.get('/login',function(req,res){
+   res.render('login');
+});
+app.get('/adddetails',userloggedin,function(req,res){
+   res.render('adddetails');
+});
+app.post('/adddetails',userloggedin,function(req,res){
+    var data = req.body;
+    var id = req.user._id.toString();
+    updateuser(id,data,function(err,data){
+    });
+     res.redirect('/');
+});
+app.get('/product/:id',function(req,res){
+   var id = req.params.id.toString();
+    findproduct(id,function(err,data){
+        console.log(data);
+        res.render('productv',{product:data});
+    });
+});
+app.get('/addtocart/:id',userloggedin,function(req,res){
+    var id = req.params.id.toString();
+    var userid= req.user._id.toString();
+      findcart(userid,id,function(err,data){
+          if(!data){
+              addtocart(userid,id,function(err,data){
+                  res.redirect('/mycart');
+              });
+          }
+          else
+            res.redirect('/mycart');
+      });
+});
+app.get('/removefromcart/:id',userloggedin,function(req,res){
+     var id = req.params.id.toString();
+     var userid = req.user._id.toString();
+     removefromcart(userid,id,function(err,data){
+         res.redirect('/mycart');
+     });
+});
+app.get('/mycart',userloggedin,function(req,res){
+   var userid = req.user._id.toString();
+   findacart(userid,function(err,data){
+       var productids = data.products;
+        if(productids.length==0)
+          res.render('emptycart');
+        else{
+           findallproduct(productids,function(err,product){
+             var cost = 0;
+               for(var x =0 ;x<product.length;x++)
+               {
+                   cost=cost+product[x].price;
+               }
+                  res.render('cart',{product:product,cost:cost});
+              
+           });
+        }
+   });
+});
+app.get('/addressbar/cart',userloggedin,function(req,res){
+    res.render('address');
+});
+app.post('/addaddress',userloggedin,function(req,res){
+  var id = req.user._id;
+  var body = req.body;
+  addaddresstocart(id,body,function(err,data){
+   console.log(data);
+  });
+  findacart(id,function(err,data){
+   var products= data.products;
+   findallproduct(products,function(err,data1){
+       var price=0;
+       for(var x =0;x<data1.length;x++){
+        price=price+data1[x].price;
+       }
+       res.render('confirm',{product:data1,address:body,price:price});
+   });
+  });
+
+});
+app.use(function(req,res,next){
+  res.send('<h1>  404  NO  PAGE  FOUND  </h1>');
+});
+
 app.listen(port,function(err){
 if(err)
 	console.log(err);

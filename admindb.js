@@ -3,7 +3,7 @@ var {hash,compare} = require('./hashing.js');
 var schema = require('mongoose').Schema;
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/jogibro');
 
-var {request,order,message,user,cart,product} = require('./instamojo.js');
+var {request,order,message,user,cart,product} = require('./schema.js');
 var adminschema =  new schema ({
    username :{
    	type:String ,
@@ -72,6 +72,12 @@ var deleteproduct = function(id,callback){
 var allproduct = function(callback){
   product.find({},callback);
 };
+var findbycategory= function(category,callback){
+  product.find({category:category},callback);
+};
+var findallproduct = function(productids,callback){
+   product.find({_id:{$in : productids}},callback)
+};
 // messages
 var allmessages = function(callback){
    message.find({},callback);
@@ -84,15 +90,51 @@ var deletemessage= function(id,callback){
   message.remove({_id:id},callback);
 };
 //cart
-var addproducttocart = function(userid,productid,callback){
-  cart.update({userid:userid},{$push : {products:productid}},callback);
+var createcart = function(id,callback){
+  var userid= id.toString();
+  var  new_cart = new cart({userid:userid});
+  new_cart.save(callback);
 };
-
+var addtocart = function(userid,productid,callback){
+   cart.update({userid:userid},{$push :{products:productid}},callback);
+};
+var findcart = function(userid,productid,callback){
+    cart.findOne({userid:userid,products:productid},callback);
+};
+var removefromcart = function(userid,productid,callback){
+    cart.update({userid:userid},{$pull :{products:productid}},callback);
+};
+var findacart = function(userid,callback){
+   cart.findOne({userid:userid},callback);
+};
+var addaddresstocart= function(userid,data,callback){
+   cart.update({userid:userid},data,callback);
+};
+//user
+var finduser = function(no,callback){
+     user.findOne({no:no},callback);
+};
+var adduser = function(no,password,callback){
+       var body={
+          no,
+          password
+       };
+     var new_user = new user(body);
+     new_user.save(callback);
+};
+var userbyid = function(id,callback){
+    user.findOne({_id:id},callback);
+};
+var updateuser = function(id,data,callback){
+    user.update({_id:id},data,callback);
+};
 //  orders
  module.exports = {
 adminmake,adminusername,adminpassword,addproduct,allproduct,
 editproduct,updateimage,deleteproduct,findproduct,allmessages,
-deletemessage,adminid,saveadmin,adminemail,admincheck,allproduct
+deletemessage,adminid,saveadmin,adminemail,admincheck,allproduct,
+finduser,adduser,userbyid,updateuser,createcart,findcart,addtocart,
+removefromcart,findacart,findallproduct,addaddresstocart
  };
 var clear= function(){
   admin.remove({},function(err,data){
@@ -103,5 +145,6 @@ var clear= function(){
     console.log(data);
   });
 };
-
-
+cart.find().then(function(data){
+  console.log(data);
+});

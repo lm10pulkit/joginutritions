@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My-kart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+.box-1{
+    display:inline-flex;
+    
+    width:100%;
+    padding:5%;
+}
+.kart-products{
+    border:gray 1px solid;
+    padding:3%;
+    width:60%;
+}
+.kart-heading{
+    border-bottom:1px black solid;
+    width:100%;
+}
+/* Quantity button */
+.product-card{
+    display:inline-flex;
+    width:100%;
+    padding:2%;
+    border:black 1px solid;
+    margin-top:3%;
+}
+.pricing-box{
+    border:1px solid gray;
+    margin-left:5%;
+    width:35%;
+    height:50%;
+    background-color: rgba(194, 190, 190, 0.164);
+    padding:2%;
+
+}
+.order-sum{
+    border-bottom:1px black solid;
+    padding:1%;
+}
+
+
+.nav-bar{
+    border-bottom: 2px black solid;
+    height:60px;
+    padding:20px 5px 0 10px;
+    display:inline-flex;
+    width:100%;
+}
+a.company-name{
+    text-decoration:none;
+}
+.company-name{
+    
+    width:200px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color:black;
+    
+    
+}
+.cateogaries{
+    display:inline-flex;
+    width:700px;
+    padding-left:10px;
+}
+.dropdown{
+    padding:1px;
+    
+}
+.dropdown-content {
+
+position: absolute;
+background-color: white;
+width: 700px;
+height:200%;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+padding:1%;
+margin-top:16px;
+
+}
+.dropbtn{
+background-color:white;
+border:none;
+font-family:montserrat;
+font-weight:bold;
+}
+
+input[name=search1] {
+  width: 200px;
+  box-sizing: border-box;
+  padding:1px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family:bold;
+  
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+   </style>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ 
+</head>
+
+<body>
+        
+          
+         
+                
+              <!-- Navigation bar -->
+              <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; border-bottom:black 1px solid;">
+                        <a class="navbar-brand" href="#">JOGI NUTRITION</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                          
+                        </div>
+                        <form align="center">
+                                <input  type="text" name="search" placeholder="Search..">
+                              </form>
+                              <div class="navbar-nav" >
+                                    
+                                    <a class="nav-item nav-link" style="color:black;" href="#">LOGIN</a>
+                                    <a class="nav-item nav-link" style="color:black;"  href="#" >MY KART</a>
+                                    
+                                  </div>
+                      </nav>
+
+                      <div class="box-1">
+                              <!-- Left side box for product details -->
+                        <div class="kart-products">
+                                <div class="kart-heading">
+                                <h3>My Kart <span style="float:right;">Rs <%=cost%></span></h3>
+                                <h5>(<%=product.length%> items)</h5>
+                                
+                        </div>
+                        <!-- Product detail card -->
+                        <%product.forEach(function(item){%>
+                        <div class="about-product" style="width:100%;">
+                                        <div class="product-card" style="">
+                                            <img class="img" src="<%=item.imageurl%>" >
+                                            <div class="about-product" style="width:100%;padding:2%;">
+                                               <div class="title" ><h3><%=item.name%></h3></div>
+                                               <div class="title"><h4><%=item.price%></h4></div>
+                                               <!-- Quantity button -->
+                                               <br>
+                                               <a href='removefromcart/<%=item._id%>'><button type="button"  class="btn btn-danger">Remove</button></a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <%});%>
+                                        
+                                        
+                                        <!-- ///Product detail card -->
+
+                                              
+                        </div>
+
+                        <!-- Right side box for billing -->
+                        <div class="pricing-box">
+                                <h4 style="border-bottom:1px solid black;">PRICE DETAILS</h4><br>
+                                        <div class="order-sum">
+                                <h6>BAG TOTAL(<%=product.length%> ITEMS)<span style="float:right;"><%= cost%> Rs</span></h6><br>
+                                        <a href='/addressbar/cart'><button type="button" class="btn btn-primary btn-lg btn-block">Place Order</button></a>
+                        </div>
+
+                        
+
+                      </div>
+        
+        

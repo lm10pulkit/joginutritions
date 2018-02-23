@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+          <title>SHOP</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+          <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+                  <style>
+                    
+
+
+    ul{
+        background-color: rgba(0,0,0,0);
+        border-bottom: white 1px solid;
+    }
+    #cat1{
+        color:white;
+    }
+
+    /* NAV BAR */
+    
+
+.nav-bar{
+    border-bottom: 2px black solid;
+    height:60px;
+    padding:20px 5px 0 10px;
+    display:inline-flex;
+    width:100%;
+}
+a.company-name{
+    text-decoration:none;
+}
+.company-name{
+    
+    width:200px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color:black;
+    
+    
+}
+.cateogaries{
+    display:inline-flex;
+    width:700px;
+    padding-left:10px;
+}
+.dropdown{
+    padding:1px;
+    
+}
+.dropdown-content {
+
+position: absolute;
+background-color: white;
+width: 700px;
+height:200%;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+padding:1%;
+margin-top:16px;
+
+}
+.dropbtn{
+background-color:white;
+border:none;
+font-family:montserrat;
+font-weight:bold;
+}
+
+input[name=search1] {
+  width: 200px;
+  box-sizing: border-box;
+  padding:1px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family:bold;
+  
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+                    </style>
+        </head>
+        <body>
+                
+                  
+                  <div class="bg1" >
+                        
+                      <!-- Navigation bar -->
+                          <div class="nav-bar" >
+                              <a href="#" class="company-name">Jogi Nutrition</a>
+                              <div class="cateogaries">
+                              <div class="dropdown"  onmouseenter="showProtein()" onmouseleave="hideProtein()">
+                                    <button class="dropbtn" >Protien</button>
+                                   <div class="dropdown-content" id="proteinid"> 
+                                      <a href="#">Link 1</a><br>
+                                      <a href="#">Link 2</a><br>
+                                      <a href="#">Link 3</a>
+                                    </div>
+                                    </div>
+                
+                
+                                  <!-- <div class="dropdown"  onmouseenter="showWeight()" onmouseleave="hideWeight()">
+                                            <button class="dropbtn" >Weight Gainer</button>
+                                           <div class="dropdown-content" id="Weightid"> 
+                                              <a href="#">Link 1</a><br>
+                                              <a href="#">Link 2</a><br>
+                                              <a href="#">Link 3</a>
+                                            </div>
+                                            </div> -->
+                
+                                            <div class="dropdown"  onmouseenter="showBcaa()" onmouseleave="hideBcaa()">
+                                                    <button class="dropbtn" >BCAA/Amino Acid</button>
+                                                   <div class="dropdown-content" id="Bcaaid"> 
+                                                      <a href="#">Link 1</a><br>
+                                                      <a href="#">Link 2</a><br>
+                                                      <a href="#">Link 3</a>
+                                                    </div>
+                                                    </div>  
+                                                    
+                                                    <div class="dropdown"  onmouseenter="showJoint()" onmouseleave="hideJoint()">
+                                                            <button class="dropbtn" >Joint Support</button>
+                                                           <div class="dropdown-content" id="Jointid"> 
+                                                              <a href="#">Link 1</a><br>
+                                                              <a href="#">Link 2</a><br>
+                                                              <a href="#">Link 3</a>
+                                                            </div>
+                                                            </div>  
+                
+                                                            <div class="dropdown"  onmouseenter="showPre()" onmouseleave="hidePre()">
+                                                                    <button class="dropbtn" >Pre/Post Workout</button>
+                                                                   <div class="dropdown-content" id="Preid"> 
+                                                                      <a href="#">Link 1</a><br>
+                                                                      <a href="#">Link 2</a><br>
+                                                                      <a href="#">Link 3</a>
+                                                                    </div>
+                                                                    </div> 
+                
+                                                                    <!-- <div class="dropdown"  onmouseenter="showEssential()" onmouseleave="hideEssential()">
+                                                                            <button class="dropbtn" >Essential Vitamins</button>
+                                                                           <div class="dropdown-content" id="Essentialid"> 
+                                                                              <a href="#">Link 1</a><br>
+                                                                              <a href="#">Link 2</a><br>
+                                                                              <a href="#">Link 3</a>
+                                                                            </div>
+                                                                            </div> 
+                 -->
+                                                                            <div class="dropdown"  onmouseenter="showGym()" onmouseleave="hideGym()">
+                                                                                    <button class="dropbtn" >Gym Essentials</button>
+                                                                                   <div class="dropdown-content" id="Gymid"> 
+                                                                                      <a href="#">Link 1</a><br>
+                                                                                      <a href="#">Link 2</a><br>
+                                                                                      <a href="#">Link 3</a>
+                                                                                    </div>
+                                                                                    </div> 
+                
+                                                                                    <div class="dropdown"  onmouseenter="showFat()" onmouseleave="hideFat()">
+                                                                                            <button class="dropbtn" >Fat Burner</button>
+                                                                                           <div class="dropdown-content" id="Fatid"> 
+                                                                                              <a href="#">Link 1</a><br>
+                                                                                              <a href="#">Link 2</a><br>
+                                                                                              <a href="#">Link 3</a>
+                                                                                            </div>
+                                                                                            </div> 
+                                                                                          </div>
+                
+                
+                                                                                            <form style="width:100px;">
+                                                                                                    <input  type="text" name="search" placeholder="Search..">
+                                                                                                  </form>
+                
+                                                                                                  <a class="login" style="color:black;  margin-left:200px;" href="#">LOGIN</a>
+                                                                                                  <a class="mykart" style="color:black;margin-left:1%;"  href="/mycart" >MY KART</a>
+                
+                          </div>
+                
+                
+                          <script>
+                              var i;
+                              var x=document.getElementsByClassName("dropdown-content");
+                              for(i=0;i<8;i++)
+                              x[i].style.display="none";
+                            //   Protien
+                              function showProtein(){
+                                var z=document.getElementById("proteinid").style.display="block";
+                                
+                              }
+                              function hideProtein(){
+                                var y=document.getElementById("proteinid").style.display="none";
+                              }
+                
+                                // Weight
+                            /*   function showWeight(){
+                                var z=document.getElementById("Weightid").style.display="block";
+                                
+                              }
+                              function hideWeight(){
+                                var y=document.getElementById("Weightid").style.display="none";
+                              }*/
+                            // BCAA
+                            function showBcaa(){
+                                var z=document.getElementById("Bcaaid").style.display="block";
+                                
+                              }
+                              function hideBcaa(){
+                                var y=document.getElementById("Bcaaid").style.display="none";
+                              }
+                
+                              //JOint Support
+                              function showJoint(){
+                                var z=document.getElementById("Jointid").style.display="block";
+                                
+                              }
+                              function hideJoint(){
+                                var y=document.getElementById("Jointid").style.display="none";
+                              }
+                            // Pre/Post workout
+                              function showPre(){
+                                var z=document.getElementById("Preid").style.display="block";
+                                
+                              }
+                              function hidePre(){
+                                var y=document.getElementById("Preid").style.display="none";
+                              }
+                            //   Essential Vitamins
+                              function showEssential(){
+                                var z=document.getElementById("Essentialid").style.display="block";
+                                
+                              }
+                              function hideEssential(){
+                                var y=document.getElementById("Essentialid").style.display="none";
+                              }
+                
+                            //   Gym essentials
+                            function showGym(){
+                                var z=document.getElementById("Gymid").style.display="block";
+                                
+                              }
+                              function hideGym(){
+                                var y=document.getElementById("Gymid").style.display="none";
+                              }
+                
+                // fat burner
+                              function showFat(){
+                                var z=document.getElementById("Fatid").style.display="block";
+                                
+                              }
+                              function hideFat(){
+                                var y=document.getElementById("Fatid").style.display="none";
+                              }
+                              
+                
+                          </script>
+                    <ul>
+                        <div align='center' >
+                        <%data.forEach(function(item){%>
+                        <div class="card" style="width: 20rem; margin:10%; ">
+                            <img class="card-img-top" src="<%=item.imageurl%>" alt="Card image cap">
+                            <div class="card-block">
+                              <h4 class="card-title"><%=item.name%></h4>
+                              <p class="card-text"><%=item.description%></p>
+                              <a href="/product/<%=item._id%>" class="btn btn-primary">check this out</a>
+                            </div>
+                          </div>                     
+                              <%});%>
+                          </div>           
+</body>        

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Summary</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="new-nav.css">
+  <link rel="stylesheet" href="summary.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+//nav bar
+.form-inline{
+    margin-right:10%;
+}
+form{
+    
+    width:50%;
+    margin-right:20%;
+}
+input[name=search] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+    font-family:bold;
+    
+    background-color: rgba(0,0,0,0);
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding:5px 0 5px 15px;
+   }
+
+//Summary
+
+.page{
+    
+    margin-top:3%;
+    width:100%;
+    margin-bottom:3%;
+}
+.active{
+    font-weight:bold;
+}
+
+.box-1{
+    display:inline-flex;
+    
+    width:100%;
+    padding:5%;
+}
+.kart-products{
+    border:gray 1px solid;
+    padding:3%;
+    width:60%;
+}
+.kart-heading{
+    border-bottom:1px black solid;
+    width:100%;
+}
+/* Quantity button */
+.product-card{
+    display:inline-flex;
+    width:100%;
+    padding:2%;
+    border:black 1px solid;
+    margin-top:3%;
+}
+.right-box{
+    margin-left:5%;
+    width:35%;
+}
+.pricing-box{
+    border:1px solid gray;
+    
+    width:100%;
+    height:50%;
+    margin-bottom:2%;
+    background-color: rgba(194, 190, 190, 0.164);
+    padding:2%;
+
+}
+.order-sum{
+    border-bottom:1px black solid;
+    padding:1%;
+}
+
+</style>
+ 
+</head>
+<body>
+ <!-- Navbar -->
+        <nav class="navbar  navbar-light" style="background-color: white; border-bottom:black 1px solid;">
+                <a class="navbar-brand" href="#">JOGI NUTRITION</a>
+                
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  
+                </div>
+                <form align="center">
+                        <input  type="text" name="search" placeholder="Search..">
+                      </form>
+                      <div class="navbar-nav" >
+                            
+                            <a class="nav-item nav-link" style="color:black;" href="#">LOGIN</a>
+                            
+                            
+                          </div>
+              </nav>
+
+              <div class="page" align="center">
+                    <span class="active">ADDRESS--------SUMMARY</span>--------PAYMENT
+      
+                      </div>
+                      <div class="box-1">
+
+                            <!-- Left side box for product details -->
+                      <div class="kart-products">
+                              <div class="kart-heading">
+                              <h3>My Kart <span style="float:right;"><%=price%></span></h3>
+                              <h5>(<%=product.length%> items)</h5>
+                              
+                      </div>
+                      <!-- Product detail card -->
+                      <%product.forEach(function(item){%>
+                      <div class="about-product" style="width:100%;">
+                                      <div class="product-card" style="">
+                                          <img class="img" src="<%=item.imageurl%>" >
+                                          <div class="about-product" style="width:100%;padding:2%;">
+                                             <div class="title" ><h5 ><%=item.name%></h5></div>
+                                             <div class="title"><h5 ><%=item.price%></h5></div>
+                                             <!-- Quantity button --> 
+                                             
+                                          </div>
+                                      </div>
+                                      
+                                      </div>
+                                <%});%>      <!-- ///Product detail card -->
+                      </div>
+
+                      <!-- Right side box for billing -->
+                      <div class="right-box">
+                      <div class="pricing-box">
+                              <h4 style="border-bottom:1px solid black;">PRICE DETAILS</h4><br>
+                                      <div class="order-sum">
+                              <h6>BAG TOTAL(<%=product.length%> ITEMS)<span style="float:right;"><%=price%> Rs</span></h6><br>
+                            
+                                      <h4>TOTAL<span style="float:right;"><%=price%> Rs</span></h4><br>
+                                      <button type="button" class="btn btn-primary btn-lg btn-block">CONTINUE-></button>
+                      </div>
+                        <br><br><br><br>
+                      <div class="pricing-box">
+                            <h4 style="border-bottom:1px solid black;">DELIVERY ADDRESS</h4><br>
+                                    <div class="order-sum">
+                            <br>
+                            <%=address.address%><br>
+                            <%=address.city%> <br>
+                            <%=address.state%><br>
+                             <br>
+                                    <a href='/addressbar/cart'><button type="button" class="btn btn-primary btn-lg btn-block">CHANGE</button></a>
+                    </div>
+
+                    </div>
+
+                      
+
+
+                      
+
+                    </div>
+
+             
+              
+            
+
+              
+                    
